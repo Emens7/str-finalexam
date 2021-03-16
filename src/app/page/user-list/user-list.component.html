@@ -1,6 +1,9 @@
 <div class="row">
   <div class="col-12 mt-2">
     <h2>User List</h2>
+    <div>
+      <button [routerLink]="['user/0']" class="btn btn-primary btn-block mb-4">Create User</button>
+    </div>
     <div class="col-md-4">
       <input (keyup)="onFilter($event)" type="text" class="form-control mb-4" placeholder="Filter by name">
     </div>

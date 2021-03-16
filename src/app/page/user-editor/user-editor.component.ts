@@ -43,7 +43,10 @@ export class UserEditorComponent implements OnInit {
 
   onSave(user: User): void {
     if (this.isNew) {
-
+      this.userService.create(user).subscribe((resp: any) => {
+        alert('The user has been created successfully.');
+        this.router.navigate(['users']);
+      })
     } else {
       this.userService.update(user).subscribe((resp: any) => {
         alert('The user has been updated successfully.');

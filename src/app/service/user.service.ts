@@ -46,9 +46,9 @@ export class UserService {
    * The method is: this.http.post
    */
 
-   create(user: User): void {
+   create(user: User): Observable<any> {
     let url = this.endpoint;
-    this.http.post(url, user).forEach(response => console.log(response));
+    return this.http.post(url, user);
   }
 
   /**
