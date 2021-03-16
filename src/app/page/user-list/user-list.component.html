@@ -7,16 +7,16 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>#</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Address</th>
-          <th>Active</th>
+          <th (click)="onOrder('id')">#</th>
+          <th (click)="onOrder('name')">Name</th>
+          <th (click)="onOrder('email')">Email</th>
+          <th (click)="onOrder('address')">Address</th>
+          <th (click)="onOrder('active')">Active</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of users$ | async | filter:keyWord">
+        <tr *ngFor="let user of users$ | async | filter:keyWord | sort:key">
           <td>{{ user.id }}</td>
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
