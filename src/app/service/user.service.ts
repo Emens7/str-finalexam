@@ -55,8 +55,8 @@ export class UserService {
    * Update a user in the database.
    * The method is: this.http.patch
    */
-   update(user: User): void {
-    let url = this.endpoint;
-    this.http.patch(url, user).forEach(response => console.log(response));
+   update(user: User): Observable<any> {
+    let url = `${this.endpoint}/${user.id}`;
+    return this.http.patch(url, user);
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { User } from 'src/app/model/user';
@@ -12,6 +12,8 @@ import { UserService } from 'src/app/service/user.service';
   styleUrls: ['./user-editor.component.scss']
 })
 export class UserEditorComponent implements OnInit {
+
+  isNew: boolean = true;
 
   /**
    * user$ {Observable<User>}
@@ -25,6 +27,7 @@ export class UserEditorComponent implements OnInit {
         return of(new User());
       }
 
+      this.isNew = false;
       return this.userService.get(Number(params.id));
     })
   );
@@ -32,9 +35,21 @@ export class UserEditorComponent implements OnInit {
   constructor(
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
+  }
+
+  onSave(user: User): void {
+    if (this.isNew) {
+
+    } else {
+      this.userService.update(user).subscribe((resp: any) => {
+        alert('The user has been updated successfully.');
+        this.router.navigate(['users']);
+      });
+    }
   }
 
 }
