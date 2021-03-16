@@ -1,6 +1,9 @@
 <div class="row">
   <div class="col-12 mt-2">
     <h2>User List</h2>
+    <div class="col-md-4">
+      <input (keyup)="onFilter($event)" type="text" class="form-control mb-4" placeholder="Filter by name">
+    </div>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -13,7 +16,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of users$ | async">
+        <tr *ngFor="let user of users$ | async | filter:keyWord">
           <td>{{ user.id }}</td>
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>

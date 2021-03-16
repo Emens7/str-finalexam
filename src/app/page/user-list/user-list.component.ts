@@ -12,6 +12,8 @@ export class UserListComponent implements OnInit {
 
   users$: Observable<User[]> = this.userService.getAll();
 
+  keyWord: string = '';
+
   constructor(
     private userService: UserService,
   ) { }
@@ -26,6 +28,10 @@ export class UserListComponent implements OnInit {
        this.users$ = this.userService.getAll();
        });
     }
+  }
+
+  onFilter(event: Event): void {
+    this.keyWord = (event.target as HTMLInputElement).value;
   }
 
 }
